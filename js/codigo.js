@@ -76,3 +76,24 @@ function iniciarSesion(){
         console.log(error)
     })
 }
+
+let menu = document.querySelector("#menu"); //aqui solo hago un puntero al elemento pero no hace nada, solo escucha al elemento
+
+function closeMenu(){
+    menu.close();//esto cierra el menu
+}
+
+/* Evento de navegacion */
+document.querySelector("#miRuteo").addEventListener("ionRouteWillChange", mostrarNavegacion)
+
+function mostrarNavegacion(event){
+    let paginas = document.querySelectorAll(".pagina")  //en este caso son clases por eso son .Algo
+    for(let i=0; i<paginas.length;i++){
+        paginas[i].style.display = "none";
+    }
+    if(event.detail.to==="/"){
+        document.querySelector("#pagina-Registro").style.display="block";
+    }else if(event.detail.to==="/Login"){
+        document.querySelector("#pagina-Login").style.display="block";
+    }
+}
