@@ -86,12 +86,12 @@ function closeMenu(){
 /* Evento de navegacion */
 document.querySelector("#miRuteo").addEventListener("ionRouteWillChange", mostrarNavegacion)
 
-function mostrarNavegacion(event){
+function mostrarNavegacion(event){   //event detecta los cambios y ahi tiene su funcion de callback y el componente y ahi se ejecuta
     let paginas = document.querySelectorAll(".pagina")  //en este caso son clases por eso son .Algo
     for(let i=0; i<paginas.length;i++){
         paginas[i].style.display = "none";
     }
-    if(event.detail.to==="/"){
+    if(event.detail.to==="/"){      //este evento tambien te trae el detalle de todo el elemento y lo hago por puntero
         document.querySelector("#pagina-Registro").style.display="block";
     }else if(event.detail.to==="/Login"){
         document.querySelector("#pagina-Login").style.display="block";
