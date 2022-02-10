@@ -95,5 +95,7 @@ function mostrarNavegacion(event){   //event detecta los cambios y ahi tiene su 
         document.querySelector("#pagina-Registro").style.display="block";
     }else if(event.detail.to==="/Login"){
         document.querySelector("#pagina-Login").style.display="block";
+    }else if(event.detail.to==="/Recetas"){
+        document.querySelector("#pagina-Recetas").style.display="block";
     }
 }

@@ -23,6 +23,7 @@
         <ion-router  id="miRuteo"> <!-- Uno por cada enlace -->            
             <ion-route url="/" component="pagina-Registro"></ion-route>  <!-- Se cierran y se abren apra cada elemento -->
             <ion-route url="/Login" component="pagina-Login"></ion-route>
+            <ion-route url="/Recetas" component="pagina-Recetas"></ion-route>
         </ion-router> <!-- Aqui hago el evento para las opciones de menu -->
                     <!-- Debo colocar un ion-nav sino no funciona para q lo guarde -->
                     <ion-nav></ion-nav> 
@@ -39,10 +40,7 @@
                                 <ion-item href="/" onclick="closeMenu()">Registro</ion-item>
                                 <!-- / es home pero debo decir por codigo q es registro pero solo hace la url no muestra nada-->
                                 <ion-item href="/Login" onclick="closeMenu()">Login</ion-item>
-                                <!-- Esta function closeMenu() la cree yo  -->
-                                <!-- <ion-item>Menu Item</ion-item>
-                                <ion-item>Menu Item</ion-item>
-                <ion-item>Menu Item</ion-item> -->
+                                <ion-item href="/Recetas" onclick="closeMenu()">Recetas</ion-item>
                             </ion-list>
                         </ion-content>
                     </ion-menu>
@@ -120,7 +118,26 @@
                         </ion-content>
                     </ion-page>
 
+                    <!-- otra pagina - Receta -->
+                    <ion-page class="ion-page pagina" id="pagina-Recetas">
+                        <ion-header>
+                            <ion-toolbar>
+                                <ion-buttons slot="start">
+                                    <ion-menu-toggle>
+                                        <ion-button>
+                                            <ion-icon slot="icon-only" name="menu"></ion-icon>
+                                        </ion-button>
+                                    </ion-menu-toggle>
+                                </ion-buttons>
+                                <ion-title>Recetas</ion-title>
+                            </ion-toolbar>
+                        </ion-header>
+                        <ion-content class="ion-padding">
+                            <!-- Seria mi content de aqui en adelante pero cada uno es una pagina por eso cambio el id de registro-->
+                            <h1>Recetas</h1>                            
 
+                        </ion-content>
+                    </ion-page>
 
     </ion-app>
 </body>
