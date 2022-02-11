@@ -99,3 +99,40 @@ function mostrarNavegacion(event){   //event detecta los cambios y ahi tiene su 
         document.querySelector("#pagina-Recetas").style.display="block";
     }
 }
+
+/* API  */
+document.querySelector("#pagina-Recetas").addEventListener("click",mostrarRecetas)
+
+function mostrarRecetas(){
+    fetch("https://recetas-api-taller.herokuapp.com/api/recetas",{
+        method: "Get",            //los parametros siempre viajan en el body        
+        headers:{
+            "x-auth":localStorage.getItem("token") //Aqui recupero el valor
+        }
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        //console.log(data);
+        data.forEach(function(recetas) {
+            document.querySelector("#mostrarRecetas").innerHTML +=`
+            <ion-card id="mostrarRecetasTodas">                               
+                             
+            <img src="${recetas.urlImagen}" />
+                                <ion-card-header>
+                                  <ion-card-subtitle>Destination</ion-card-subtitle>
+                                  <ion-card-title>${recetas.nombre}</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content>
+                                  ${recetas.preparacion}
+                                </ion-card-content>
+                                </ion-card>
+            `;
+        });
+    })
+    .catch(function(error){
+        console.log(error)
+    })
+
+}
