@@ -2,153 +2,149 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Javascript -->
-    <script src="js/codigo.js" type="text/javascript" defer></script>
-
-    <!-- Enlaces de IONIC de la pagina -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-
-    <!-- para annadirlo en terminal pongo npm init para iniciar el node.js y luego el ionic init de tipo custom para el ionic y luego annado las librerias -->
-    <!-- CSS Mapas -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-   <!-- Java mas CSS de mapas-->
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
- integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
- crossorigin=""></script>
-    <title>Ej Integrador</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <ion-app>
-        <!-- Agrego los componentes de ruteo -->
-        <ion-router  id="miRuteo"> <!-- Uno por cada enlace -->            
-            <ion-route url="/" component="pagina-Registro"></ion-route>  <!-- Se cierran y se abren apra cada elemento -->
-            <ion-route url="/Login" component="pagina-Login"></ion-route>
-            <ion-route url="/Recetas" component="pagina-Recetas"></ion-route>
-        </ion-router> <!-- Aqui hago el evento para las opciones de menu -->
-                    <!-- Debo colocar un ion-nav sino no funciona para q lo guarde -->
-                    <ion-nav></ion-nav> 
-                    <!-- Menu Seleccionando Javascript-->
-                    <ion-menu side="start" menu-id="custom" class="my-custom-menu" content-id="main" id="menu">
-                        <!--debo darle i=un id para hacerlo todo por javascript  -->
-                        <ion-header>
-                            <ion-toolbar color="tertiary">
-                                <ion-title>Menú</ion-title>
-                            </ion-toolbar>
-                        </ion-header>
-                        <ion-content>
-                            <ion-list>
-                                <ion-item href="/" onclick="closeMenu()">Registro</ion-item>
-                                <!-- / es home pero debo decir por codigo q es registro pero solo hace la url no muestra nada-->
-                                <ion-item href="/Login" onclick="closeMenu()">Login</ion-item>
-                                <ion-item href="/Recetas" onclick="closeMenu()">Recetas</ion-item>
-                            </ion-list>
-                        </ion-content>
-                    </ion-menu>
+  <ion-app>
+    <ion-router id="miRuteo">
+      <ion-route url="/" component="pagina-Registro"></ion-route>
+      <ion-route url="/Login" component="pagina-Login"></ion-route>
+      <ion-route url="/Recetas" component="pagina-Recetas"></ion-route>
+      <ion-route url="/Logout" component="pagina-Registro"></ion-route>
+    </ion-router>
+    <ion-nav></ion-nav>
+    <ion-menu side="start" menu-id="first" content-id="main" id="Menu">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item href="/" onclick="closeMenu()">Registro</ion-item>
+          <ion-item href="/Login" onclick="closeMenu()">Iniciar sesión</ion-item>
+          <ion-item href="/Recetas" onclick="closeMenu()">Recetas</ion-item>
+          <ion-item href="/Logout" onclick="closeMenu()">Cerrar sesión</ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <div id="main"></div>
 
-                    <div id="main"></div><!-- Debo agregar ese id para genera el menu del tipo hamburguesa -->
+    <ion-page-Registro class="ion-page pagina" id="pagina-Registro">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-toggle>
+              <ion-button>
+                <ion-icon slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+            </ion-menu-toggle>
+          </ion-buttons>
+          <ion-title>Registro</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h1>Registro</h1>
+        <ion-item>
+          <ion-label>Nombre</ion-label>
+          <ion-input id="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Apellido</ion-label>
+          <ion-input id="apellido"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Dirección</ion-label>
+          <ion-input id="direccion"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input id="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input id="password"></ion-input>
+        </ion-item>
+        <ion-button expand="block" id="btnRegistro">Registro</ion-button>
 
-                    <!-- Menu de ionic mas pagina completa - Registro -->
-                    <ion-page class="ion-page pagina" id="pagina-Registro">
-                        <ion-header>
-                            <ion-toolbar>
-                                <ion-buttons slot="start">
-                                    <ion-menu-toggle>
-                                        <ion-button>
-                                            <ion-icon slot="icon-only" name="menu"></ion-icon>
-                                        </ion-button>
-                                    </ion-menu-toggle>
-                                </ion-buttons>
-                                <ion-title>Registro</ion-title>
-                            </ion-toolbar>
-                        </ion-header>
-                        <ion-content class="ion-padding">
-                            <!-- Seria mi content de aqui en adelante pero cada uno es una pagina por eso cambio el id de registro-->
-                            <h1>Registro</h1>
-                            <ion-item>
-                                <ion-label position="floating">Nombre:</ion-label>
-                                <ion-input id="name"></ion-input>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label position="floating">Apellido:</ion-label>
-                                <ion-input id="apellido"></ion-input>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label position="floating">Direccion:</ion-label>
-                                <ion-input id="address"></ion-input>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label position="floating">Email:</ion-label>
-                                <ion-input id="email"></ion-input>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label position="floating">Password:</ion-label>
-                                <ion-input id="pasw"></ion-input>
-                            </ion-item>
-                            <ion-button color="medium" id="btnRegistro">Registro</ion-button>
-                        </ion-content>
-                    </ion-page>
+      </ion-content>
+    </ion-page-Registro>
+    <ion-page-Login class="ion-page pagina" id="pagina-Login">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-toggle>
+              <ion-button>
+                <ion-icon slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+            </ion-menu-toggle>
+          </ion-buttons>
+          <ion-title>Iniciar sesión</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h1>Registro</h1>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input type="text" id="emailSesion"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input type="password" id="passwordSesion"></ion-input>
+        </ion-item>
+        <ion-button expand="block" id="btnInicioSesion">Iniciar sesión</ion-button>
+      </ion-content>
+    </ion-page-Login>
+    <ion-page-Recetas class="ion-page pagina" id="pagina-Recetas">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-toggle>
+              <ion-button>
+                <ion-icon slot="icon-only" name="menu"></ion-icon>
+              </ion-button>
+            </ion-menu-toggle>
+          </ion-buttons>
+          <ion-title>Recetas</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" id="recetas">
+        <h1>Recetas</h1>
+      </ion-content>
+    </ion-page-Recetas>
+    <ion-page-detalleReceta class="ion-page pagina" id="pagina-DetalleReceta">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">          
+              <ion-button>
+                <ion-buttons slot="start">
+                  <ion-icon name="arrow-back-outline" id="Volver"></ion-icon>
+                </ion-buttons>
+              </ion-button>            
+          </ion-buttons>
+          <ion-title>Detalle receta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content  id="detalleReceta"> 
+        <div id="map"></div>       
+      </ion-content>
+    </ion-page-detalleReceta>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""></script>
 
-                    <!-- otra pagina - login -->
-                    <ion-page class="ion-page pagina" id="pagina-Login">
-                        <ion-header>
-                            <ion-toolbar>
-                                <ion-buttons slot="start">
-                                    <ion-menu-toggle>
-                                        <ion-button>
-                                            <ion-icon slot="icon-only" name="menu"></ion-icon>
-                                        </ion-button>
-                                    </ion-menu-toggle>
-                                </ion-buttons>
-                                <ion-title>Login</ion-title>
-                            </ion-toolbar>
-                        </ion-header>
-                        <ion-content class="ion-padding">
-                            <!-- Seria mi content de aqui en adelante pero cada uno es una pagina por eso cambio el id de registro-->
-                            <h1>Login</h1>
-                            <ion-item>
-                                <ion-label position="floating">Email:</ion-label>
-                                <ion-input id="emailSesion"></ion-input>
-                            </ion-item>
-                            <ion-item>
-                                <ion-label position="floating">Password:</ion-label>
-                                <ion-input id="paswSesion" type="password"></ion-input>
-                            </ion-item>
-                            <ion-button color="medium" id="btnSesion">Iniciar Sesión</ion-button>
-
-                        </ion-content>
-                    </ion-page>
-
-                    <!-- otra pagina - Receta -->
-                    <ion-page class="ion-page pagina" id="pagina-Recetas">
-                        <ion-header>
-                            <ion-toolbar>
-                                <ion-buttons slot="start">
-                                    <ion-menu-toggle>
-                                        <ion-button>
-                                            <ion-icon slot="icon-only" name="menu"></ion-icon>
-                                        </ion-button>
-                                    </ion-menu-toggle>
-                                </ion-buttons>
-                                <ion-title>Recetas</ion-title>
-                            </ion-toolbar>
-                        </ion-header>
-                        <ion-content class="ion-padding-Recetas" id="mostrarRecetas">
-                            <!-- Seria mi content de aqui en adelante pero cada uno es una pagina por eso cambio el id de registro-->
-                            <h1>Recetas</h1>                            
-                            
-                        </ion-content>
-                    </ion-page>
-
-    </ion-app>
+    <script src="JS/codigo.js"></script>
+  </ion-app>
 </body>
 
 </html>
