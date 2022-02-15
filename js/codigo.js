@@ -171,13 +171,15 @@ function QueMostrar(event) {
         document.querySelector("#pagina-Login").style.display = "block";
     }
     else if (paginaMostrar === "/Recetas") {
+        loadRecetas();
         document.querySelector("#pagina-Recetas").style.display = "block";
     }
     else if (paginaMostrar === "/Detalle-Receta") {       
         document.querySelector("#pagina-DetalleReceta").style.display = "block";
     }
     else if(paginaMostrar==="/Logout"){
-        localStorage.clear();
+        localStorage.clear(); //elimina todos las claves del localStorage
+        localStorage.removeItem("token"); //elimina solo la clave indicada en los parametros de removeItem 
         document.querySelector("#pagina-Login").style.display = "block";
     }
 
@@ -252,7 +254,8 @@ function IniciarSesion() {
         })
         .then(function (data) {
             localStorage.setItem("token", data.token);
-            presentAlert();
+            //presentAlert();
+            ruteo.push("/Recetas");
         })
         .catch(function (error) {
             console.log(error.message);
@@ -266,6 +269,4 @@ async function presentAlert() {
     alert.buttons = ['OK'];
     document.body.appendChild(alert);
     await alert.present();
-
-
 }
